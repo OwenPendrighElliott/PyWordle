@@ -16,15 +16,15 @@ def load_words() -> List[str]:
         lines = f.readlines()
     return [w.strip() for w in lines if len(w.strip()) == 5]
 
-def count_occurances(word: str) -> Dict[str, int]:
-    occurances = dict()
+def count_occurences(word: str) -> Dict[str, int]:
+    occurences = dict()
     for i in range(len(word)):
-        if word[i] not in occurances:occurances[word[i]] = 1
-        else:occurances[word[i]] += 1
-    return occurances
+        if word[i] not in occurences:occurences[word[i]] = 1
+        else:occurences[word[i]] += 1
+    return occurences
 
 def check_input(uin: str, target: str) -> None:
-    target_occurances = count_occurances(target)
+    target_occurences = count_occurences(target)
     exact = dict()
     for i in range(len(uin)):
         if uin[i] not in exact:
@@ -38,7 +38,7 @@ def check_input(uin: str, target: str) -> None:
             compared[uin[i]] = 0
         if uin[i] == target[i]:
             print_list.append(COLOUR["ENDC"]+COLOUR['GREEN'])
-        elif uin[i] in target and compared[uin[i]] < target_occurances[uin[i]] and exact[uin[i]] < target_occurances[uin[i]]:
+        elif uin[i] in target and compared[uin[i]] < target_occurences[uin[i]] and exact[uin[i]] < target_occurences[uin[i]]:
             print_list.append(COLOUR["ENDC"]+COLOUR['YELLOW'])
         else:
             print_list.append(COLOUR["ENDC"]+COLOUR['WHITE'])
